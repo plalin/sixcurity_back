@@ -1,2 +1,0 @@
-/usr/bin/ar qc librestinio_catch_main.a  CMakeFiles/restinio_catch_main.dir/catch_main.cpp.o
-/usr/bin/ranlib librestinio_catch_main.a

@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/_unit.test.run_on_thread_pool.dir/main.cpp.o  -o _unit.test.run_on_thread_pool  ../catch_main/librestinio_catch_main.a ../../nodejs/http_parser/libhttp_parser.a -pthread 

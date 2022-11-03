@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/sample.hello_world.dir/main.cpp.o  -o sample.hello_world  ../../nodejs/http_parser/libhttp_parser.a -pthread 

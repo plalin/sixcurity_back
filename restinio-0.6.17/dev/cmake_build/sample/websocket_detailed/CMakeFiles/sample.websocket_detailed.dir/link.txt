@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/sample.websocket_detailed.dir/main.cpp.o  -o sample.websocket_detailed  ../../nodejs/http_parser/libhttp_parser.a -pthread 

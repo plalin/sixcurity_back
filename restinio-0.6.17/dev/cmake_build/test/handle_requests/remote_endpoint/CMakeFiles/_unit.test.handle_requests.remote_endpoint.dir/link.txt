@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/_unit.test.handle_requests.remote_endpoint.dir/main.cpp.o  -o _unit.test.handle_requests.remote_endpoint  ../../catch_main/librestinio_catch_main.a ../../../nodejs/http_parser/libhttp_parser.a -pthread 
