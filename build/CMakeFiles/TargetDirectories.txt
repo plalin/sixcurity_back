@@ -1,4 +1,0 @@
-/mnt/c/Ryute/Univ2022/sixcurity_back/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Ryute/Univ2022/sixcurity_back/build/CMakeFiles/edit_cache.dir
-/mnt/c/Ryute/Univ2022/sixcurity_back/build/restinio/CMakeFiles/rebuild_cache.dir
-/mnt/c/Ryute/Univ2022/sixcurity_back/build/restinio/CMakeFiles/edit_cache.dir
