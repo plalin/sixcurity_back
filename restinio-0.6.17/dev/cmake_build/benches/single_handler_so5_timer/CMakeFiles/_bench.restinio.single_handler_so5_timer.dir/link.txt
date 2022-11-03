@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/_bench.restinio.single_handler_so5_timer.dir/main.cpp.o  -o _bench.restinio.single_handler_so5_timer  ../../so_5/libso_s.5.5.24.3.a ../../nodejs/http_parser/libhttp_parser.a -pthread -lpthread 

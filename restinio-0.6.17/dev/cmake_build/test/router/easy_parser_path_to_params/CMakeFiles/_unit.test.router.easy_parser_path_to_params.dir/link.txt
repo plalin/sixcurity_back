@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/_unit.test.router.easy_parser_path_to_params.dir/main.cpp.o  -o _unit.test.router.easy_parser_path_to_params  ../../catch_main/librestinio_catch_main.a ../../../nodejs/http_parser/libhttp_parser.a -pthread 

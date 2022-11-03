@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/_unit.test.header.dir/main.cpp.o  -o _unit.test.header  ../catch_main/librestinio_catch_main.a ../../nodejs/http_parser/libhttp_parser.a -pthread 

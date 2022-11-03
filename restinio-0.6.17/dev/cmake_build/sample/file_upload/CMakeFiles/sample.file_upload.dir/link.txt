@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/sample.file_upload.dir/main.cpp.o  -o sample.file_upload  ../../nodejs/http_parser/libhttp_parser.a -pthread 

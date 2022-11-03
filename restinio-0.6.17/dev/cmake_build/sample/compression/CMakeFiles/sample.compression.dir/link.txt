@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/sample.compression.dir/main.cpp.o  -o sample.compression  /usr/lib/x86_64-linux-gnu/libz.so ../../nodejs/http_parser/libhttp_parser.a -pthread 

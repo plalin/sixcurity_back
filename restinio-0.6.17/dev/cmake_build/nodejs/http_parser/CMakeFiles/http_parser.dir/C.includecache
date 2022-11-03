@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Ryute/Univ2022/sixcurity_back/restinio-0.6.17/dev/nodejs/http_parser/http_parser.c
+http_parser.h
+/mnt/c/Ryute/Univ2022/sixcurity_back/restinio-0.6.17/dev/nodejs/http_parser/http_parser.h
+assert.h
+-
+stddef.h
+-
+ctype.h
+-
+string.h
+-
+limits.h
+-
+
+/mnt/c/Ryute/Univ2022/sixcurity_back/restinio-0.6.17/dev/nodejs/http_parser/http_parser.h
+stddef.h
+-
+BaseTsd.h
+-
+stdint.h
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/sample.easy_parser_router.dir/main.cpp.o  -o sample.easy_parser_router  ../../nodejs/http_parser/libhttp_parser.a -pthread 
