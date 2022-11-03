@@ -1,11 +1,12 @@
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.10)
 
-project(
-  SIXCURITY
-  LANGUAGES CXX)
-set(CMAKE_CXX_COMPILER g++)
-add_definitions("-Wall -std=c++11")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_subdirectory(restinio)
+# Use standealone ASIO.
+SET(RESTINIO_USE_BOOST_ASIO "none")
+SET( RESTINIO_STAND_ALONE_ASIO_DEFINES -DASIO_STANDALONE -DASIO_HAS_STD_CHRONO -DASIO_DISABLE_STD_STRING_VIEW)
 
-add_executable (program test.cpp RESTINIO)
+add_subdirectory(src)
+
