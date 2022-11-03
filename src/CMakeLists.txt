@@ -41,4 +41,3 @@ install(
 	TARGETS ${PRJ}
 	RUNTIME DESTINATION bin
 )
-

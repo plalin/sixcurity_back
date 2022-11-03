@@ -1,69 +1,20 @@
 #include <restinio/all.hpp>
 #include <json_dto/pub.hpp>
+
 #include <string>
 
-template <typename RESP>
-RESP init_resp(RESP resp) {
-    resp.append_header(restinio::http_field::server, "Sixcurity");
-    resp.append_header_date_field();
-    resp.append_header(restinio::http_field::content_type, "application/json");
-    return resp;
-}
+#include "api/login/Login.hxx"
 
 using router_t = restinio::router::express_router_t<>;
-
-
-struct LoginRequest {
-    std::string username;
-    std::string password;
-
-    template <typename Json_Io>
-    void json_io(Json_Io &io) {
-        io
-            &json_dto::mandatory("username", username)
-            &json_dto::mandatory("password", password);
-    }
-};
-
-struct LoginResponse {
-    std::string token;
-
-    template <typename Json_Io>
-    void json_io(Json_Io &io) {
-        io &json_dto::mandatory("token", token);
-    }
-};
 
 auto create_request_handler() {
     auto router = std::make_unique<router_t>();
 
     router->http_post("/login",
-        [](auto req, auto params) {
-            auto resp = init_resp(req->create_response());
-
-            std::string response_body;
-            LoginRequest request_body;
-
-            json_dto::from_json<LoginRequest>(req->body(), request_body);
-
-            if (request_body.username != "admin") {
-                LoginResponse response;
-                response.token = "invalid";
-                response_body = json_dto::to_json(response);
-
-                resp.set_body(response_body).done();
-                return restinio::request_rejected();
-            }
-            else {
-                LoginResponse response;
-                response.token = "valid";
-                response_body = json_dto::to_json(response);
-
-                resp.set_body(response_body).done();
-                return restinio::request_accepted();
-            }
-        }
-    );
+        [](const auto &req, const auto &) {
+            return restinio::request_accepted();
+            // return HandleLogin(req, params);
+        });
 
     return router;
 }
