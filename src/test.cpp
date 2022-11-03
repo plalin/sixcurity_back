@@ -12,6 +12,7 @@ RESP init_resp(RESP resp) {
 
 using router_t = restinio::router::express_router_t<>;
 
+
 struct LoginRequest {
     std::string username;
     std::string password;
