@@ -11,7 +11,6 @@ project(${PRJ} CXX)
 find_package(fmt CONFIG REQUIRED)
 find_package(unofficial-http-parser CONFIG REQUIRED)
 find_package(restinio CONFIG REQUIRED)
-find_package(json-dto CONFIG REQUIRED)
 find_package(SQLiteCpp CONFIG REQUIRED)
 find_package(optional-lite CONFIG REQUIRED)
 
@@ -19,7 +18,6 @@ add_executable(${PRJ}
 	main.cpp)
 
 target_link_libraries(${PRJ} PRIVATE restinio::restinio)
-target_link_libraries(${PRJ} PRIVATE json-dto::json-dto)
 target_link_libraries(${PRJ} PRIVATE SQLiteCpp)
 target_link_libraries(${PRJ} PRIVATE nonstd::optional-lite) 
 target_link_libraries(${PRJ} PRIVATE odb) 

@@ -11,9 +11,9 @@ const std::string SUCCESS = "Success";
 
 using json = nlohmann::json;
 
-restinio::request_handling_status_t HandleRegister(std::shared_ptr<restinio::generic_request_t<restinio::no_extra_data_factory_t::data_t> > const &req
-    // const restinio::request_handle_t &req
-    // , std::shared_ptr<database> db
+restinio::request_handling_status_t HandleRegister(
+    const restinio::request_handle_t &req,
+    std::shared_ptr<database> db
 ) {
     auto body = req->body();
     auto body_str = restinio::cast_to<std::string>(body);
