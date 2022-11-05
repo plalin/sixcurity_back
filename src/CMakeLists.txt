@@ -14,8 +14,17 @@ find_package(restinio CONFIG REQUIRED)
 find_package(SQLiteCpp CONFIG REQUIRED)
 find_package(optional-lite CONFIG REQUIRED)
 
-add_executable(${PRJ}
-	main.cpp)
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
+  ${CMAKE_CURRENT_SOURCE_DIR}/*.cxx
+)
+
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
+  ${CMAKE_CURRENT_SOURCE_DIR}/*.cxx
+)
+
+add_executable(${PRJ} ${SRC_FILES})
+
+#add_executable(${PRJ} main.cpp)
 
 target_link_libraries(${PRJ} PRIVATE restinio::restinio)
 target_link_libraries(${PRJ} PRIVATE SQLiteCpp)

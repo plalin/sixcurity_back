@@ -1,5 +1,5 @@
 #include "UserUtil.hxx"
-#include "User.hxx"
+#include "User-odb.hxx"
 
 #include <memory>
 #include <iostream>

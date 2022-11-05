@@ -5,6 +5,7 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
 
 #include "api/login/Login.hxx"
 #include "api/register/Register.hxx"
@@ -14,7 +15,7 @@ using namespace odb::core;
 using router_t = restinio::router::express_router_t<>;
 using status = restinio::request_handling_status_t;
 
-auto create_request_handler(std::shared_ptr<database> db) {
+auto create_request_handler(std::shared_ptr<database> &db) {
     auto router = std::make_unique<router_t>();
 
     // router->http_post("/login",
@@ -26,6 +27,8 @@ auto create_request_handler(std::shared_ptr<database> db) {
         register_handler = HandleRegister;
     router->http_post("/register",
         [&db, &register_handler](const auto &req, const auto &) {
+            std::cout << "in_func" << std::endl;
+            fflush(stdout);
             return register_handler(req, db);
         });
 

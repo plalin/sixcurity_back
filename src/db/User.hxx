@@ -6,14 +6,16 @@
 
 class User {
 public:
+    User() {}
     User(const std::string &_username,
         const std::string &_nickname,
-        const std::string &_hashed_password);
+        const std::string &_hashed_password) :
+        username(_username),
+        nickname(_nickname),
+        hashed_password(_hashed_password) {};
 
 private:
     friend class odb::access;
-
-    User();
 
     std::string username;
     std::string nickname;
