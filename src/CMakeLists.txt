@@ -31,6 +31,7 @@ target_link_libraries(${PRJ} PRIVATE SQLiteCpp)
 target_link_libraries(${PRJ} PRIVATE nonstd::optional-lite) 
 target_link_libraries(${PRJ} PRIVATE odb) 
 target_link_libraries(${PRJ} PRIVATE odb-mysql) 
+target_link_libraries(${PRJ} PRIVATE ssl crypto)
 
 #link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libodb-2.5.0-b.23/odb)
 #link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libodb-mysql-2.5.0-b.23/odb/mysql)

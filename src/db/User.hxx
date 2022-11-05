@@ -1,5 +1,5 @@
-#ifndef _UTIL_HXX_
-#define _UTIL_HXX_
+#ifndef _USER_HXX_
+#define _USER_HXX_
 
 #include <string>
 #include <odb/core.hxx>
@@ -13,6 +13,10 @@ public:
         username(_username),
         nickname(_nickname),
         hashed_password(_hashed_password) {};
+
+    std::string get_hashed_password() const {
+        return hashed_password;
+    }
 
 private:
     friend class odb::access;

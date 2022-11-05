@@ -25,7 +25,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(RegisterRequest, username, nickname, password
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(RegisterResponse, response)
 } // namespace registerdata
 
-restinio::request_handling_status_t HandleRegister(
+restinio::request_handling_status_t handleRegister(
      const restinio::request_handle_t &req,
      std::shared_ptr<database> db
 );

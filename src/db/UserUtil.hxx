@@ -7,7 +7,7 @@
 
 using namespace odb::core;
 
-void CreateUser(std::shared_ptr<database> db,
+void createUser(std::shared_ptr<database> db,
     const std::string &username,
     const std::string &nickname,
     const std::string &hashed_password);

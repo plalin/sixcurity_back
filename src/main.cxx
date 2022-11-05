@@ -18,16 +18,14 @@ using status = restinio::request_handling_status_t;
 auto create_request_handler(std::shared_ptr<database> &db) {
     auto router = std::make_unique<router_t>();
 
-    // router->http_post("/login",
-    //     [](const auto &req, const auto &) {
-    //         return HandleLogin(req);
-    //     });
+    router->http_post("/login",
+        [&db](const auto &req, const auto &) {
+            return handleLogin(req, db);
+        });
 
     router->http_post("/register",
         [&db](const auto &req, const auto &) {
-            std::cout << "in_func" << std::endl;
-            fflush(stdout);
-            return HandleRegister(req, db);
+            return handleRegister(req, db);
         });
 
     return router;
