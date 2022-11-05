@@ -23,13 +23,11 @@ auto create_request_handler(std::shared_ptr<database> &db) {
     //         return HandleLogin(req);
     //     });
 
-    std::function<status(const restinio::request_handle_t &, std::shared_ptr<database>)>
-        register_handler = HandleRegister;
     router->http_post("/register",
-        [&db, &register_handler](const auto &req, const auto &) {
+        [&db](const auto &req, const auto &) {
             std::cout << "in_func" << std::endl;
             fflush(stdout);
-            return register_handler(req, db);
+            return HandleRegister(req, db);
         });
 
     return router;

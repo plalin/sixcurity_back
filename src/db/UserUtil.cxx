@@ -16,6 +16,7 @@ void CreateUser(std::shared_ptr<database> db,
         User user(username, nickname, hashed_password);
         db->persist(user);
         t.commit();
+        std::cout << "User created" << std::endl;
     }
     catch (const odb::exception &e) {
         std::cerr << e.what() << std::endl;
