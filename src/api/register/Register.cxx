@@ -22,7 +22,7 @@ using json = nlohmann::json;
 using namespace registerdata;
 
 
-bool isUsernameTaken(const std::string &username, std::shared_ptr<odb::database> &db)
+bool isUsernameTaken(const std::string& username, std::shared_ptr<odb::database>& db)
 {
     try {
         odb::transaction t(db->begin());
@@ -32,12 +32,12 @@ bool isUsernameTaken(const std::string &username, std::shared_ptr<odb::database>
         }
         return true;
     }
-    catch (const odb::exception &e) {
+    catch (const odb::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 }
 
-bool isNicknameTaken(const std::string &nickname, std::shared_ptr<odb::database> &db) {
+bool isNicknameTaken(const std::string& nickname, std::shared_ptr<odb::database>& db) {
     try {
         odb::transaction t(db->begin());
         odb::result<User> result(db->query<User>(odb::query<User>::nickname == nickname));
@@ -46,37 +46,47 @@ bool isNicknameTaken(const std::string &nickname, std::shared_ptr<odb::database>
         }
         return true;
     }
-    catch (const odb::exception &e) {
+    catch (const odb::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 }
 
-// TODO: please fix here
-bool isValidPassword(const std::string &password) {
-    if (password.length() < 8) {
-        return false;
-    }
-    return true;
+// needs verification
+bool isValidPassword(const std::string& password) {
+}
+if (password.length() < 8) {
+    return false;
+}
+catch (const odb::exception& e) {
+    std::cerr << e.what() << std::endl;
+}
+return true;
 }
 
-// TODO: please fix here
-bool isValidUsername(const std::string &username) {
+// here too
+bool isValidUsername(const std::string& username) {
     if (username.length() < 3) {
         return false;
     }
+    catch (const odb::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
     return true;
 }
 
-// TODO: please fix here
-bool isValidNickname(const std::string &nickname) {
+// here too
+bool isValidNickname(const std::string& nickname) {
     if (nickname.length() < 3) {
         return false;
+    }
+    catch (const odb::exception& e) {
+        std::cerr << e.what() << std::endl;
     }
     return true;
 }
 
 restinio::request_handling_status_t handleRegister(
-    const restinio::request_handle_t &req,
+    const restinio::request_handle_t& req,
     std::shared_ptr<database> db
 ) {
     auto resp = init_resp(req->create_response());
@@ -87,36 +97,49 @@ restinio::request_handling_status_t handleRegister(
 
     RegisterRequest register_req = req_json.get<RegisterRequest>();
 
-    //TODO: Check if password is valid
-    register_req.password = sha256(register_req.password);
-
-    //TODO: Check if username is valid
-    //TODO: Check if nickname is valid
-    if (isUsernameTaken(register_req.username, db)) {
-        RegisterResponse resp_data = { USERNAME_TAKEN };
-        json resp_json = resp_data;
-        resp.set_body(resp_json.dump()).done();
-        return restinio::request_accepted();
-    }
-    if(isNicknameTaken(register_req.nickname, db)) {
-        RegisterResponse resp_data = { NICKNAME_TAKEN };
-        json resp_json = resp_data;
-        resp.set_body(resp_json.dump()).done();
-        return restinio::request_accepted();
-    }
+    //Check if password is valid
     if (!isValidPassword(register_req.password)) {
         RegisterResponse resp_data = { INVALID_PASSWORD };
         json resp_json = resp_data;
         resp.set_body(resp_json.dump()).done();
         return restinio::request_accepted();
     }
-    
-    createUser(db, register_req.username, register_req.nickname, register_req.password);
+    register_req.password = sha256(register_req.password);
 
-    RegisterResponse resp_data = { SUCCESS };
-    json res_json = resp_data;
+    //Check if username is valid
+    if (isValidUsername(register_req.username)) {
+        RegisterResponse resp_data = { INVALID_USERNAME };
+        json resp_json = resp_data;
+        resp.set_body(resp_json.dump()).done();
+        return restinio::request_accepted();
+        //Check if nickname is valid
+        if (isValidNickname(register_req.nickname)) {
+            RegisterResponse resp_data = { INVALID_NICKNAME };
+            json resp_json = resp_data;
+            resp.set_body(resp_json.dump()).done();
+            return restinio::request_accepted();
+        }
+        if (isNicknameTaken(register_req.nickname, db)) {
+            RegisterResponse resp_data = { NICKNAME_TAKEN };
+            json resp_json = resp_data;
+            resp.set_body(resp_json.dump()).done();
+            return restinio::request_accepted();
+        }
+        //why check if password is valid again???
+        /*
+        if (!isValidPassword(register_req.password)) {
+            RegisterResponse resp_data = { INVALID_PASSWORD };
+            json resp_json = resp_data;
+            resp.set_body(resp_json.dump()).done();
+            return restinio::request_accepted();
+        }*/
 
-    resp.set_body(res_json.dump()).done();
+        createUser(db, register_req.username, register_req.nickname, register_req.password);
 
-    return restinio::request_accepted();
-}
+        RegisterResponse resp_data = { SUCCESS };
+        json res_json = resp_data;
+
+        resp.set_body(res_json.dump()).done();
+
+        return restinio::request_accepted();
+    }
